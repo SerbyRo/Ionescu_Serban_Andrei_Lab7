@@ -41,9 +41,9 @@ namespace LibraryWebAPI.Controllers
               return NotFound();
           }
             var customer = await _context.Customers.AsNoTracking().FirstOrDefaultAsync(c => c.CustomerID == id);
-            var city = await _context.Cities.AsNoTracking().FirstOrDefaultAsync(c => c.ID == customer.CityID);
+            //var city = await _context.Cities.AsNoTracking().FirstOrDefaultAsync(c => c.ID == customer.CityID);
 
-            customer.City = city;
+            //customer.City = city;
 
             if (customer == null)
             {
@@ -58,7 +58,7 @@ namespace LibraryWebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, Customer customer)
         {
-            var city = await _context.Cities.AsNoTracking().FirstOrDefaultAsync(c => customer.CityID == c.ID);
+            //var city = await _context.Cities.AsNoTracking().FirstOrDefaultAsync(c => customer.CityID == c.ID);
             if (id != customer.CustomerID)
             {
                 return BadRequest();
