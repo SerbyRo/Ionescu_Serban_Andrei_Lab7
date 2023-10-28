@@ -1,4 +1,5 @@
 ﻿using Ionescu_Serban_Andrei_Lab2.Models;
+using LibraryModel.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ionescu_Serban_Andrei_Lab2.Data_WebAPI
@@ -14,6 +15,7 @@ namespace Ionescu_Serban_Andrei_Lab2.Data_WebAPI
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<City> Cities { get; set; }
         public DbSet<PublishedBook> PublishedBooks { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,6 +23,7 @@ namespace Ionescu_Serban_Andrei_Lab2.Data_WebAPI
             modelBuilder.Entity<Order>().ToTable("Order");
             modelBuilder.Entity<Author>().ToTable("Author");
             modelBuilder.Entity<Book>().ToTable("Book");
+            modelBuilder.Entity<City>().ToTable("City");
             modelBuilder.Entity<Publisher>().ToTable("Publisher");
             modelBuilder.Entity<PublishedBook>().ToTable("PublishedBook");
 

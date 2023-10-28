@@ -1,6 +1,7 @@
 ﻿using Ionescu_Serban_Andrei_Lab2.Models;
 using Microsoft.EntityFrameworkCore;
 using Ionescu_Serban_Andrei_Lab2.Models;
+using LibraryModel.Models;
 
 namespace Ionescu_Serban_Andrei_Lab2.Data
 {
@@ -16,6 +17,7 @@ namespace Ionescu_Serban_Andrei_Lab2.Data
         public DbSet<Book> Books { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<PublishedBook> PublishedBooks { get; set; }
+        public DbSet<City> Cities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,7 +27,7 @@ namespace Ionescu_Serban_Andrei_Lab2.Data
             modelBuilder.Entity<Book>().ToTable("Book");
             modelBuilder.Entity<Publisher>().ToTable("Publisher");
             modelBuilder.Entity<PublishedBook>().ToTable("PublishedBook");
-
+            modelBuilder.Entity<City>().ToTable("City");
             modelBuilder.Entity<PublishedBook>()
                 .HasKey(c => new { c.BookID, c.PublisherID });
 

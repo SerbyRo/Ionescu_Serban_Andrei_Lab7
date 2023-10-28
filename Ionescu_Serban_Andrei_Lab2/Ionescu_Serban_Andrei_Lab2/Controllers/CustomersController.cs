@@ -48,8 +48,8 @@ namespace Ionescu_Serban_Andrei_Lab2.Controllers
             var response = await client.GetAsync($"{_baseUrl}/{id.Value}");
             if (response.IsSuccessStatusCode)
             {
-                var customer = JsonConvert.DeserializeObject<Customer>(
-                await response.Content.ReadAsStringAsync());
+                var customer = await _context.Customers.AsNoTracking().Include(b=>b.City)
+                    .FirstOrDefaultAsync(m => m.CustomerID == id);
                 return View(customer);
             }
             return NotFound();
@@ -58,6 +58,7 @@ namespace Ionescu_Serban_Andrei_Lab2.Controllers
         // GET: Customers/Create
         public IActionResult Create()
         {
+            ViewData["CityID"] = new SelectList(_context.Cities, "ID", "CityName");
             return View();
         }
 
@@ -66,8 +67,9 @@ namespace Ionescu_Serban_Andrei_Lab2.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerID,Name,Adress,BirthDate")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerID,Name,Adress,BirthDate,CityID")] Customer customer)
         {
+            ViewData["CityID"] = new SelectList(_context.Cities, "ID", "CityName");
             if (!ModelState.IsValid) return View(customer);
             try
             {
@@ -90,38 +92,53 @@ namespace Ionescu_Serban_Andrei_Lab2.Controllers
         // GET: Customers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            ViewData["CityID"] = new SelectList(_context.Cities, "ID", "CityName");
+            if (id == null || _context.Customers == null)
             {
-                return new BadRequestResult();
+                return NotFound();
             }
-            var client = new HttpClient();
-            var response = await client.GetAsync($"{_baseUrl}/{id.Value}");
-            if (response.IsSuccessStatusCode)
+
+            var customer = await _context.Customers.FindAsync(id);
+            if (customer == null)
             {
-                var customer = JsonConvert.DeserializeObject<Customer>(
-                await response.Content.ReadAsStringAsync());
-                return View(customer);
+                return NotFound();
             }
-            return new NotFoundResult();
+
+            return View(customer);
         }
 
         // POST: Customers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("CustomerID,Name,Adress,BirthDate")] Customer customer)
+        public async Task<ActionResult> EditPost(int? id)
         {
-            if (!ModelState.IsValid) return View(customer);
-            var client = new HttpClient();
-            string json = JsonConvert.SerializeObject(customer);
-            var response = await client.PutAsync($"{_baseUrl}/{customer.CustomerID}",
-            new StringContent(json, Encoding.UTF8, "application/json"));
-            if (response.IsSuccessStatusCode)
+
+            if (id == null)
             {
-                return RedirectToAction("Index");
+                return NotFound();
             }
-            return View(customer);
+            var customerToUpdate = await _context.Customers.FirstOrDefaultAsync(s => s.CustomerID == id);
+            ViewData["CityID"] = new SelectList(_context.Cities, "ID", "CityName");
+
+            if (await TryUpdateModelAsync<Customer>(
+                customerToUpdate,
+                "",
+                s => s.Name, s => s.Adress, s => s.BirthDate, s => s.City))
+            {
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (DbUpdateException /* ex */)
+                {
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists");
+                }
+            }
+            return View(customerToUpdate);
         }
 
         // GET: Customers/Delete/5
@@ -135,8 +152,8 @@ namespace Ionescu_Serban_Andrei_Lab2.Controllers
             var response = await client.GetAsync($"{_baseUrl}/{id.Value}");
             if (response.IsSuccessStatusCode)
             {
-                var customer = JsonConvert.DeserializeObject<Customer>(await
-                response.Content.ReadAsStringAsync());
+                var customer = await _context.Customers.Include(b =>b.City).AsNoTracking()
+                    .FirstOrDefaultAsync(m=>m.CustomerID == id);
                 return View(customer);
             }
             return new NotFoundResult();
