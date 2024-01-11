@@ -29,7 +29,7 @@ namespace LibraryWebAPI.Controllers
           {
               return NotFound();
           }
-            return await _context.Customers.ToListAsync();
+            return await _context.Customers.Include(i => i.City).ToListAsync();
         }
 
         // GET: api/Customers/5

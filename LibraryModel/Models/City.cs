@@ -11,6 +11,5 @@ namespace LibraryModel.Models
     {
         public int ID { get; set; }
         public string CityName { get; set; }
-        public ICollection<Customer>? Customers { get; set; }
     }
 }
