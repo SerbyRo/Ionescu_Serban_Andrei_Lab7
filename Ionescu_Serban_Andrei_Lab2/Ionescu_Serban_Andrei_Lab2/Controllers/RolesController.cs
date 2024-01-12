@@ -93,7 +93,7 @@ namespace Ionescu_Serban_Andrei_Lab2.Controllers
             else
                 return await Update(model.RoleId);
         }
-
+        //test
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
