@@ -58,8 +58,8 @@ namespace LibraryWebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, Customer customer)
         {
-            var city = await _context.Cities.AsNoTracking().FirstOrDefaultAsync(c => customer.CityID == c.ID);
-            customer.City = city;
+           // var city = await _context.Cities.FirstOrDefaultAsync(c => customer.CityID == c.ID);
+          //  customer.City = city;
             if (id != customer.CustomerID)
             {
                 return BadRequest();
@@ -91,8 +91,8 @@ namespace LibraryWebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
-          var city = await _context.Cities.AsNoTracking().FirstOrDefaultAsync(c => customer.CityID==c.ID);
-          customer.City = city;
+      //    var city = await _context.Cities.FirstOrDefaultAsync(c => customer.CityID==c.ID);
+       //   customer.City = city;
           if (_context.Customers == null)
           {
               return Problem("Entity set 'LibraryContext.Customers'  is null.");

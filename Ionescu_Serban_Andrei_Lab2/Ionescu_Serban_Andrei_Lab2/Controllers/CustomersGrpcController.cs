@@ -89,7 +89,7 @@ namespace Ionescu_Serban_Andrei_Lab2.Controllers
             if (ModelState.IsValid)
             {
                 var client = new CustomerService.CustomerServiceClient(channel);
-                GrpcCustomersService.Customer response = client.Update(customer);
+                Empty response = client.Update(customer);
                 return RedirectToAction(nameof(Index));
             }
             return View(customer);

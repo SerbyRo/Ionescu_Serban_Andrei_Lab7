@@ -25,6 +25,7 @@ namespace GrpcCustomersService.Services
                             CustomerId = cust.CustomerID,
                             Name = cust.Name,
                             Address = cust.Adress,
+                            Birthdate=cust.BirthDate.ToString()
                         };
             pl.Item.AddRange(query.ToArray());
             return Task.FromResult(pl);
@@ -50,7 +51,8 @@ namespace GrpcCustomersService.Services
             {
                 CustomerId = data.CustomerID,
                 Name = data.Name,
-                Address = data.Adress
+                Address = data.Adress,
+                Birthdate=data.BirthDate.ToString()
             };
             return Task.FromResult(emp);
         }
@@ -59,6 +61,19 @@ namespace GrpcCustomersService.Services
         {
             var data = db.Customers.Find(requestData.Id);
             db.Customers.Remove(data);
+            db.SaveChanges();
+            return Task.FromResult(new Empty());
+        }
+
+        public override Task<Empty> Update(Customer requestData, ServerCallContext context)
+        {
+            db.Customers.Update(new ModelAccess.Customer()
+            {
+                CustomerID = requestData.CustomerId,
+                Name = requestData.Name,
+                Adress = requestData.Address,
+                BirthDate = DateTime.Parse(requestData.Birthdate)
+            });
             db.SaveChanges();
             return Task.FromResult(new Empty());
         }
