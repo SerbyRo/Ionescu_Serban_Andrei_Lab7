@@ -1,11 +1,11 @@
+C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\bin\Debug\net7.0\LibraryModel.deps.json
+C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\bin\Debug\net7.0\LibraryModel.dll
+C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\bin\Debug\net7.0\LibraryModel.pdb
 C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\obj\Debug\net7.0\LibraryModel.csproj.AssemblyReference.cache
 C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\obj\Debug\net7.0\LibraryModel.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\obj\Debug\net7.0\LibraryModel.AssemblyInfoInputs.cache
 C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\obj\Debug\net7.0\LibraryModel.AssemblyInfo.cs
 C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\obj\Debug\net7.0\LibraryModel.csproj.CoreCompileInputs.cache
-C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\bin\Debug\net7.0\LibraryModel.deps.json
-C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\bin\Debug\net7.0\LibraryModel.dll
-C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\bin\Debug\net7.0\LibraryModel.pdb
 C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\obj\Debug\net7.0\LibraryModel.dll
 C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\obj\Debug\net7.0\refint\LibraryModel.dll
 C:\Users\user\OneDrive\Desktop\Serban Master\Serban medii de programare avansate\Laborator7\LibraryModel\obj\Debug\net7.0\LibraryModel.pdb

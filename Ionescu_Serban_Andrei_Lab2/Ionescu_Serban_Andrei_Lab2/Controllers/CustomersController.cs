@@ -127,7 +127,7 @@ namespace Ionescu_Serban_Andrei_Lab2.Controllers
             if (await TryUpdateModelAsync<Customer>(
                 customerToUpdate,
                 "",
-                s => s.Name, s => s.Adress, s => s.BirthDate, s => s.City))
+                s => s.Name, s => s.Adress, s => s.BirthDate, s => s.CityID))
             {
                 try
                 {
